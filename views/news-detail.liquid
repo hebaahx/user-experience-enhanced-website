@@ -1,0 +1,89 @@
+{% include 'partials/head.liquid' %}
+
+<header class="news-header">
+    <a href="/nieuws" class="back-button">
+        <img src="/assets/back.svg" alt="">
+        <span>Terug</span>
+    </a>
+
+    <h1>Veld nieuws</h1>
+
+</header>
+
+
+<section class="news-detail">
+    <img
+        src="https://fdnd-agency.directus.app/assets/{{ article.image }}"
+        alt="{{ article.title }}"
+    >
+
+    <!-- Likes en comments balk -->
+    
+    {% if liked == 'true' %}
+        <p class="success"> ❤️ Bedankt voor je like!</p>
+    {% endif %}
+
+    <div class="artikel-balk">
+        <form method="POST" action="/nieuws/{{ article.slug }}/like">
+            <input type="hidden" name="news" value="{{ article.id }}">
+            <button class="artikel-likes" type="submit">
+                <img src="/assets/filledheart.svg" alt="likes">
+                {{ likes.size }} likes
+            </button>
+        </form>
+
+        <details class="reactie-details">
+            <summary class="artikel-comments">
+                <img src="/assets/comment.svg" alt="comments"> 
+                {{ comments.size }} comments
+            </summary>
+
+            <div class="reactie-popover">
+                <h2>Voeg een reactie toe:</h2>
+
+                {% if commented == 'true' %}
+                    <p class="success"> ✅ Je reactie is geplaatst!</p>
+                {% endif %}
+
+                {% if error == 'true' %}
+                    <p class="error"> ❌ Er ging iets mis. Probeer het opnieuw.</p>
+                {% endif %}
+
+                <form method="POST" action="/nieuws/{{ article.slug }}">
+                    <input type="hidden" name="news" value="{{ article.id }}">
+
+                    <label for="naam">Naam:</label>
+                    <input type="text" id="naam" name="name" placeholder="Jouw naam" required>
+
+                    <label for="bericht">Bericht:</label>
+                    <textarea id="bericht" name="comment" placeholder="Schrijf een reactie..." required></textarea>
+
+                    <button type="submit">Verstuur</button>
+                </form>
+
+                <ul class="reactie-lijst">
+                    {% if comments.size > 0 %}
+                        {% for item in comments %}
+                            <li class="reactie-item">
+                                <span class="reactie-naam">{{ item.name }}</span>
+                                <p class="reactie-tekst">{{ item.comment }}</p>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="reactie-empty">
+                            Nog geen reacties. Wees de eerste! 🌱
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <p class="date">Geplaatst: {{ article.date | date: "%d-%m-%Y" }}</p>
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.body }}</p>    
+
+</section>
+
+{% include 'partials/foot.liquid' %}

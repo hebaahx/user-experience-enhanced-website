@@ -1,0 +1,35 @@
+{% include 'partials/head.liquid' %}
+
+<header class="news-header">
+    <a href="/" class="back-button">
+        <img src="/assets/back.svg" alt="terug">
+        <span>Terug</span>
+    </a>
+    <h1>In de bloei</h1>
+</header>
+
+<section class="collectie">
+    <div class="planten-grid">
+        {% for plant in plants %}
+        <a href="/collectie/{{ plant.slug }}" class="plant-kaart">
+            {% if plant.in_bloom %}
+                <img 
+                    src="https://fdnd-agency.directus.app/assets/{{ plant.in_bloom }}" 
+                    alt=" Foto van {{ plant.name }}"
+                >
+            {% else %}
+                <p>Geen afbeelding 🌱</p>
+            {% endif %}
+
+            <span class="plant-naam">{{ plant.name }}</span>
+        </a>
+
+        {% else %}
+            <p> Er zijn nog geen planten in de collectie 🌱</p>
+        {% endfor %}
+        
+    </div>
+
+</section>
+
+{% include 'partials/foot.liquid' %}

@@ -1,0 +1,64 @@
+{% include 'partials/head.liquid' %}
+
+<header>
+<h1>Home</h1>
+</header>
+
+<section class="welcome">
+    <h2>Welkom Shauri</h2>
+</section>
+
+<section class="collection">
+    <h2>
+        <img src="/assets/collectie.svg" alt="bloem">
+        Bloemenveld collectie
+    </h2>
+    <div class="info-box">
+        <p>Je hebt nog niks gespaard. Start de <strong>Veldverkenner</strong> om meer te weten te komen over wat er groeit en je collectie aan te vullen.</p> 
+    </div>
+</section>
+
+<section class="news">
+    <h2>
+        <img src="/assets/nieuws.svg" alt="krant">
+        Veld Nieuws
+    </h2>
+    <div class="news-container">
+
+        <article class="news-card">
+            <div class="card-top">
+                <span class="badge">Bloemenveld</span>
+                <span class="time">4u geleden</span>
+            </div>
+
+            <h3>De na bloei van de duizendblad</h3>
+            <img src="/assets/duizendblad.jpg" alt="Duizendblad">
+            <p>De duizendblad is nog maar even in de bloei</p>
+        </article>
+
+        <article class="news-card purple">
+            <div class="card-top">
+                <span class="badge">Bloemenveld</span>
+                <span class="time">6u geleden</span>
+            </div>
+            
+            <h3>Cola kruid word vervangen</h3>
+            <img src="/assets/colakruid.jpg" alt="Cola">
+            <p>Cola citroenkruid word binnenkort vervangen door olijvenkruid</p>
+        </article>
+
+        <article class="news-card green">
+            <div class="card-top">
+                <span class="badge">Bloemenveld</span>
+                <span class="time">8u geleden</span>
+            </div>
+
+            <h3>Teunisbloem zaadknoppen</h3>
+            <img src="/assets/teunisbloem.jpg" alt="Teunisbloem">
+            <p>De zaadknoppen van de planten zijn nu te zien</p>
+        </article>
+
+    </div>
+</section>
+
+{% include 'partials/foot.liquid' %}

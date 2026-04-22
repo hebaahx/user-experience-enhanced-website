@@ -1,0 +1,53 @@
+{% include 'partials/head.liquid' %}
+
+<header class="news-header">
+    <a href="/" class="back-button">
+        <img src="/assets/back.svg" alt="">
+        <span>Terug</span>
+    </a>
+
+    <h1>Veld nieuws</h1>
+
+</header>
+
+
+<nav class="filters" aria-label="Filter nieuws">
+    <button class="filter active">Laatste</button>
+    <button class="filter">In de bloei</button>
+    <button class="filter">Na de bloei</button>
+</nav>
+
+
+<section class="search-bar">
+    <label for="search">Zoek in nieuws</label>
+    <input id="search"
+        type="search"
+        name="search"
+        placeholder="Zoeken..."
+    >
+
+</section>
+
+
+<section class="news-list">
+    <h2>Nieuws artikelen</h2>
+
+    {% for item in news %}
+
+    <a href="/nieuws/{{ item.slug }}" class="news-link">
+        <article class="news-item">
+            <img src="https://fdnd-agency.directus.app/assets/{{ item.image }}" alt="{{ item.title }}">
+            <div class="news-text">
+                <span class="badge">Bloemenveld</span>
+                <h3>{{ item.title }}</h3>
+            </div>
+        </article>
+
+    </a>
+
+    {% endfor %}
+
+
+</section>
+
+{% include 'partials/foot.liquid' %}
